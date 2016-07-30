@@ -1,5 +1,7 @@
 package br.com.olimpiadas_web.activity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -52,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
         initNoticias();
     }
 
-    protected void initCardView(final List<Noticia> noticias){
+    protected void initCardView(final List<Noticia> noticias) {
 
-        noticiaAdapter = new NoticiaAdapter(this,noticias);
+        noticiaAdapter = new NoticiaAdapter(this, noticias);
         mRecyclerView.setAdapter(noticiaAdapter);
     }
 
@@ -63,34 +65,46 @@ public class MainActivity extends AppCompatActivity {
 
         Call<List<Noticia>> call = iNoticia.getNoticias();
 
-        dialog = new MaterialDialog.Builder(this)
-                .cancelable(false)
-                .progress(true,0)
-                .progressIndeterminateStyle(true)
-                .title("Olimpiadas Web")
-                .content("Baixando conteúdo...")
-                .show();
-        call.enqueue(new Callback<List<Noticia>>() {
-            @Override
-            public void onResponse(Call<List<Noticia>> call, Response<List<Noticia>> response) {
-                if (response.isSuccessful()) {
-                    initCardView(response.body());
-                    Log.i(TAG, response.body().toString());
-                    closeDialog();
-                }
-            }
 
-            @Override
-            public void onFailure(Call<List<Noticia>> call, Throwable t) {
-                closeDialog();
-            }
-        });
+        showAlertDialog(this, call);
 
-        closeDialog();
+
+        //closeDialog();
     }
 
-    protected void closeDialog() {
-        if (dialog != null && dialog.isShowing()) {
+    protected void showAlertDialog(Context context, final Call call) {
+        dialog = new MaterialDialog.Builder(context)
+                .title("Olimpiadas Web")
+                .content("Baixando conteúdo...")
+                .progress(true, 0)
+                .progressIndeterminateStyle(true)
+                .cancelable(false)
+                .showListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(final DialogInterface dialog) {
+                        call.enqueue(new Callback<List<Noticia>>() {
+                            @Override
+                            public void onResponse(Call<List<Noticia>> call, Response<List<Noticia>> response) {
+                                if (response.isSuccessful()) {
+                                    initCardView(response.body());
+                                    Log.i(TAG, response.body().toString());
+                                }
+                                closeDialog(dialog);
+                            }
+
+                            @Override
+                            public void onFailure(Call<List<Noticia>> call, Throwable t) {
+                                closeDialog(dialog);
+                            }
+                        });
+                    }
+                })
+                .show();
+    }
+
+
+    protected void closeDialog(final DialogInterface dialog) {
+        if (dialog != null) {
             dialog.dismiss();
         }
     }
