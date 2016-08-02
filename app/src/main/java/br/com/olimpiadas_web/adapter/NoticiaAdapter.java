@@ -18,6 +18,7 @@ import java.util.List;
 import br.com.olimpiadas_web.R;
 import br.com.olimpiadas_web.activity.NoticiaActivity;
 import br.com.olimpiadas_web.model.Noticia;
+import br.com.olimpiadas_web.util.DataUtil;
 
 /**
  * Created by bruno.santiago on 30/07/2016.
@@ -62,6 +63,7 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.NoticiaV
 
         holder.tvTitulo.setText(item.getTitle());
         holder.tvDescription.setText(item.getBody());
+        holder.tvData.setText(DataUtil.getDate(item.getPubDate()));
         loadImage(item.getImg(), holder.ivImg);
     }
 
@@ -82,16 +84,17 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.NoticiaV
 
     public class NoticiaViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView tvTitulo,tvDescription;
+        private TextView tvTitulo,tvDescription,tvData;
         private ImageView ivImg;
         private View mItemView;
 
         public NoticiaViewHolder(View view) {
 
             super(view);
-            tvTitulo = (TextView) view.findViewById(R.id.tvTitle);
+            tvTitulo = (TextView) view.findViewById(R.id.tvTitulo);
             tvDescription = (TextView) view.findViewById(R.id.tvDescription);
-            ivImg = (ImageView) view.findViewById(R.id.thumbnail);
+            tvData = (TextView) view.findViewById(R.id.tvData);
+            ivImg = (ImageView) view.findViewById(R.id.ivImg);
             this.mItemView = view;
             itemView.setOnClickListener(this);
         }

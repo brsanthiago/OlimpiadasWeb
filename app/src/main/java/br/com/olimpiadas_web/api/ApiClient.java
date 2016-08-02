@@ -18,7 +18,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ApiClient {
 
-    public static final String BASE_URL = "http://olimpiadas-web.herokuapp.com/api/";
 
     private static Retrofit retrofit;
 
@@ -26,10 +25,10 @@ public class ApiClient {
             .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
             .create();
 
-    public static Retrofit getRetrofit() {
+    public static Retrofit getRetrofit(final String url) {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(url)
                     .addConverterFactory(new NullOnEmptyConverterFactory())
                     .addConverterFactory(
                             GsonConverterFactory.create(gson))
