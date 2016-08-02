@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#3F51B5</color>
+    <color name="colorPrimary">#004374</color>
+    <color name="colorPrimaryDark">#004374</color>
+    <color name="colorAccent">#004374</color>
+    <color name="dark_blue_olympic">#0062ab</color>
+    <color name="blue_olympic">#0072bc</color>
+    <color name="dark_green_olympic">#0baf4d</color>
+    <color name="green_olympic">#60bb46</color>
     <color name="gray">#cccccc</color>
     <color name="white">#ffffff</color>
     <color name="darkgray">#333333</color>
