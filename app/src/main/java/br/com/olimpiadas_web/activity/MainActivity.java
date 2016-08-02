@@ -119,12 +119,12 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             @Override
             public void onResponse(Call<NoticiaParser> call, Response<NoticiaParser> response) {
                 if (response.isSuccessful()) {
-                    noticiaParser = response.body();
-                    if (noticiaParser.getNoticias() != null) {
+                    if (response.body() != null) {
+                        noticiaParser = response.body();
                         noticias.addAll(noticiaParser.getNoticias());
+                        initCardView(noticias);
+                        Log.i(TAG, response.body().toString());
                     }
-                    initCardView(noticias);
-                    Log.i(TAG, response.body().toString());
                 }
                 closeDialog(dialog);
             }
