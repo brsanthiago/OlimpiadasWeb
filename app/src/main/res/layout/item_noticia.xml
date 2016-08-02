@@ -47,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_small"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <android.support.v4.widget.Space
                     android:layout_width="match_parent"
@@ -64,6 +64,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_toLeftOf="@+id/tvData"
+                        android:maxLines="3"
                         android:textColor="@color/darkgray"
                         android:textSize="@dimen/text_size_min" />
 
@@ -71,12 +72,12 @@
                         android:id="@+id/tvData"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
                         android:layout_alignParentRight="true"
-                        android:textColor="@color/colorAccent"
-                        android:drawableTint="@color/colorAccent"
+                        android:layout_marginTop="5dp"
                         android:drawableLeft="@drawable/ic_date_24dp"
                         android:drawablePadding="4dp"
+                        android:drawableTint="@color/colorAccent"
+                        android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_size_min" />
 
                 </LinearLayout>
