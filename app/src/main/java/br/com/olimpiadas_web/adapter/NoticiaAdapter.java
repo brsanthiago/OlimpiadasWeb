@@ -64,6 +64,7 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.NoticiaV
         holder.tvTitulo.setText(item.getTitle());
         holder.tvDescription.setText(item.getBody());
         holder.tvData.setText(DataUtil.getDate(item.getPubDate()));
+        holder.tvCredit.setText(item.getCredit());
         loadImage(item.getImg(), holder.ivImg);
     }
 
@@ -84,7 +85,7 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.NoticiaV
 
     public class NoticiaViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView tvTitulo,tvDescription,tvData;
+        private TextView tvTitulo,tvDescription,tvData,tvCredit;
         private ImageView ivImg;
         private View mItemView;
 
@@ -94,6 +95,7 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.NoticiaV
             tvTitulo = (TextView) view.findViewById(R.id.tvTitulo);
             tvDescription = (TextView) view.findViewById(R.id.tvDescription);
             tvData = (TextView) view.findViewById(R.id.tvData);
+            tvCredit = (TextView) view.findViewById(R.id.tvCredit);
             ivImg = (ImageView) view.findViewById(R.id.ivImg);
             this.mItemView = view;
             itemView.setOnClickListener(this);

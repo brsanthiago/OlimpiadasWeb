@@ -13,7 +13,9 @@ import android.util.Log;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import br.com.olimpiadas_web.R;
 import br.com.olimpiadas_web.adapter.NoticiaAdapter;
@@ -122,6 +124,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                     if (response.body() != null) {
                         noticiaParser = response.body();
                         noticias.addAll(noticiaParser.getNoticias());
+                        Set<Noticia> noticiaSet = new LinkedHashSet<>(noticias);
+                        noticias.clear();
+                        noticias.addAll(noticiaSet);
                         initCardView(noticias);
                         Log.i(TAG, response.body().toString());
                     }
@@ -131,7 +136,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
             @Override
             public void onFailure(Call<NoticiaParser> call, Throwable t) {
-                Log.i(TAG, t.getMessage());
                 closeDialog(dialog);
             }
         });

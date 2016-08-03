@@ -13,13 +13,9 @@ public class DataUtil {
     static String formatLocal = "dd/MM/yyyy HH:mm:ss";
     private static String date;
 
-    public static String getDate(String pubDate) {
+    public static String getDate(Date pubDate) {
         Date date = new Date();
-        try {
-            date = getDateObj(pubDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        date = pubDate;
         return new SimpleDateFormat(formatLocal).format(date);
     }
 

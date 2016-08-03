@@ -3,11 +3,12 @@ package br.com.olimpiadas_web.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by bruno.santiago on 30/07/2016.
  */
-public class Noticia implements Serializable {
+public class Noticia implements Serializable,Comparable {
 
     @SerializedName("_id")
     private String id;
@@ -24,9 +25,11 @@ public class Noticia implements Serializable {
     @SerializedName("__v")
     private String stV;
     @SerializedName("pubDate")
-    private String pubDate;
+    private Date pubDate;
     @SerializedName("createDate")
     private String createDate;
+    @SerializedName("credit")
+    private String credit;
 
     public String getId() {
         return id;
@@ -84,11 +87,11 @@ public class Noticia implements Serializable {
         this.stV = stV;
     }
 
-    public String getPubDate() {
+    public Date getPubDate() {
         return pubDate;
     }
 
-    public void setPubDate(String pubDate) {
+    public void setPubDate(Date pubDate) {
         this.pubDate = pubDate;
     }
 
@@ -98,5 +101,21 @@ public class Noticia implements Serializable {
 
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
+    }
+
+    public String getCredit() {
+        return credit;
+    }
+
+    public void setCredit(String credit) {
+        this.credit = credit;
+    }
+
+    @Override
+    public int compareTo(Object another) {
+        if (((Noticia)another).getPubDate().after(pubDate)){
+            return 0;
+        }
+        return -1;
     }
 }

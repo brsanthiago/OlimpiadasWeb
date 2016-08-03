@@ -61,7 +61,7 @@ public class NoticiaActivity extends AppCompatActivity {
     protected void loadItem(final Noticia noticia) {
 
         tvTitulo.setText(noticia.getTitle());
-        tvData.setText(DataUtil.getDate(noticia.getPubDate()));
+        //tvData.setText(DataUtil.getDate(noticia.getPubDate()));
         tvConteudo.setText(noticia.getBody());
         loadImage(noticia.getImg(),imgArticle);
     }
